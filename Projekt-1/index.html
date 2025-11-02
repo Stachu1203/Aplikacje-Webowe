@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="style.css" />
+    <title>Hobbit</title>
+  </head>
+
+  <body>
+    <div id="hero">
+      <h1 class="Title">HOBBIT</h1>
+      <p class="quote">
+        ,,W pewnej norze ziemnej mieszkał sobie pewnie hobbit....``
+      </p>
+
+      <a href="#herp" style="text-decoration: none"
+        ><div class="button">WEJDŹ DO ŚRÓDZIEMIA</div></a
+      >
+      <button id="back-button" role="button">↑</button>
+    </div>
+    <div id="book">
+      <h2 class="subtitle">O KSIĄŻCE</h2>
+      <div class="book-content">
+        <p class="text">
+          Lorem ipsum dolor sit amet consectetur adipisicing elit. Ab,
+          atque?Lorem ipsum dolor sit, amet consectetur adipisicing elit.
+          Explicabo asperiores dolorem sequi illum, fugiat amet itaque ipsa.
+          Cupiditate ullam perspiciatis maiores recusandae magnam vero,
+          voluptates quibusdam dolorem est eius magni ad praesentium facilis
+          possimus ipsam? Labore, fuga. Sit voluptatibus eum nobis iusto
+          expedita soluta consequatur blanditiis? Vero rem fugit ea.
+        </p>
+        <img class="ring" src="images/Ring.png" alt="" />
+      </div>
+    </div>
+
+    <div id="heroes">
+      <h2 class="subtitle-center">BOHATEROWIE</h2>
+      <div class="gallery">
+        <div class="page">
+          <img class="page-image" src="images/Bilbo.png" alt="" />
+          <h4 class="page-title">Bilbo Baggins</h4>
+          <p class="page-text">
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Quod
+            aliquam voluptatum incidunt deleniti totam tempore.
+          </p>
+        </div>
+        <div class="page">
+          <img class="page-image" src="images/Gandalf.png" alt="" />
+          <h4 class="page-title">Gandalf</h4>
+          <p class="page-text">
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Quod
+            aliquam voluptatum incidunt deleniti totam tempore.
+          </p>
+        </div>
+        <div class="page">
+          <img class="page-image" src="images/Golum.png" alt="" />
+          <h4 class="page-title">Gollum</h4>
+          <p class="page-text">
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Quod
+            aliquam voluptatum incidunt deleniti totam tempore.
+          </p>
+        </div>
+        <div class="page">
+          <img class="page-image" src="images/Thorin.png" alt="" />
+          <h4 class="page-title">Thorin</h4>
+          <p class="page-text">
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Quod
+            aliquam voluptatum incidunt deleniti totam tempore.
+          </p>
+        </div>
+      </div>
+    </div>
+    <script>
+      const body = document.body;
+      const entryButton = document.querySelector(".button");
+      const backButton = document.getElementById("back-button");
+      const targetSection = document.getElementById("book");
+
+      // **********************************************
+      // 1. ZABLOKUJ SCROLLOWANIE NA STARCIE
+      // **********************************************
+
+      // Zastosuj klasę blokującą od razu po załadowaniu skryptu
+      body.classList.add("no-scroll");
+
+      // **********************************************
+      // 2. FUNKCJA PRZEWIJANIA W DÓŁ (WEJDŹ DO ŚRÓDZIEMIA)
+      // **********************************************
+
+      function scrollToContent() {
+        body.classList.remove("no-scroll");
+
+        // 2. Sprawia, że przycisk powrotu jest widoczny
+        backButton.classList.add("visible");
+
+        // 3. Przewija do sekcji #book (z płynnym efektem)
+        if (targetSection) {
+          targetSection.scrollIntoView({ behavior: "smooth" });
+        }
+      }
+
+      // Nasłuchuj kliknięcia na główny button
+      if (entryButton) {
+        entryButton.addEventListener("click", function (e) {
+          e.preventDefault(); // Zapobiega domyślnemu zachowaniu linku (płynne przewijanie robimy w JS)
+          scrollToContent();
+        });
+      }
+
+      // **********************************************
+      // 3. FUNKCJA POWROTU NA STRONĘ STARTOWĄ (Przycisk Fixed)
+      // **********************************************
+
+      function scrollToHero() {
+        // 1. Przewija do góry strony (czyli do sekcji .hero)
+        window.scrollTo({
+          top: 0,
+          behavior: "smooth",
+        });
+
+        // 2. Ponownie blokuje scrollowanie
+        // Dodajemy lekkie opóźnienie, aby przewijanie miało czas się zakończyć
+        setTimeout(() => {
+          body.classList.add("no-scroll");
+          // Ukrywa przycisk powrotu
+          backButton.classList.remove("visible");
+        }, 800);
+      }
+
+      // Nasłuchuj kliknięcia na przycisk powrotu
+      if (backButton) {
+        backButton.addEventListener("click", scrollToHero);
+      }
+    </script>
+  </body>
+</html>
