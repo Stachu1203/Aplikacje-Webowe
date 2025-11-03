@@ -17,7 +17,7 @@
       <a href="#herp" style="text-decoration: none"
         ><div class="button">WEJDŹ DO ŚRÓDZIEMIA</div></a
       >
-      <button id="back-button" role="button">↑</button>
+      <button id="back-button" role="button"><img src="images/Door.png" alt=""></button>
     </div>
     <div id="book">
       <h2 class="subtitle">O KSIĄŻCE</h2>
@@ -29,9 +29,17 @@
           Cupiditate ullam perspiciatis maiores recusandae magnam vero,
           voluptates quibusdam dolorem est eius magni ad praesentium facilis
           possimus ipsam? Labore, fuga. Sit voluptatibus eum nobis iusto
-          expedita soluta consequatur blanditiis? Vero rem fugit ea.
+          expedita soluta consequatur blanditiis? Vero rem fugit. Lorem ipsum dolor sit amet consectetur, 
+          adipisicing elit. Aliquid, autem! Dolore distinctio nulla at, provident quia labore veritatis esse nihil dolorum? 
+          Veritatis doloremque fugit aliquam perferendis pariatur! Minima, quisquam culpa! Lorem ipsum dolor sit amet 
+          consectetur adipisicing elit. Totam quia saepe
+           reprehenderit architecto sit? Tempora suscipit quisquam, optio illo voluptatem nihil rerum quia molestias! Nesciunt fugit eius sit in ab maxime facere temporibus
+           similique quis quae harum, placeat quisquam provident incidunt corrupti maiores perspiciatis ex, rem soluta fuga hic ipsum sint! Quaerat, dignissimos alias. Fugiat 
+           ullam ipsa vero quasi optio alias, fugit quis, aut autem nulla facilis iure iste quia maxime, delectus officiis! Tempore, inventore sapiente asperiores corporis quo
+            doloribus aut esse doloremque dolorum fugiat.
+           Mollitia velit asperiores, quae odio esse laboriosam ipsam perferendis nemo sint tempora optio. Minus, repellat!
         </p>
-        <img class="ring" src="images/Ring.png" alt="" />
+        <img class="ring" src="images/Ring.png" alt="Pierścień" />
       </div>
     </div>
 
@@ -39,7 +47,7 @@
       <h2 class="subtitle-center">BOHATEROWIE</h2>
       <div class="gallery">
         <div class="page">
-          <img class="page-image" src="images/Bilbo.png" alt="" />
+          <img class="page-image" src="images/Bilbo.png" alt="Bilbo" />
           <h4 class="page-title">Bilbo Baggins</h4>
           <p class="page-text">
             Lorem ipsum dolor sit amet consectetur adipisicing elit. Quod
@@ -47,7 +55,7 @@
           </p>
         </div>
         <div class="page">
-          <img class="page-image" src="images/Gandalf.png" alt="" />
+          <img class="page-image" src="images/Gandalf.png" alt="Gandalf" />
           <h4 class="page-title">Gandalf</h4>
           <p class="page-text">
             Lorem ipsum dolor sit amet consectetur adipisicing elit. Quod
@@ -55,7 +63,7 @@
           </p>
         </div>
         <div class="page">
-          <img class="page-image" src="images/Golum.png" alt="" />
+          <img class="page-image" src="images/Golum.png" alt="Golum" />
           <h4 class="page-title">Gollum</h4>
           <p class="page-text">
             Lorem ipsum dolor sit amet consectetur adipisicing elit. Quod
@@ -63,7 +71,7 @@
           </p>
         </div>
         <div class="page">
-          <img class="page-image" src="images/Thorin.png" alt="" />
+          <img class="page-image" src="images/Thorin.png" alt="Thorin" />
           <h4 class="page-title">Thorin</h4>
           <p class="page-text">
             Lorem ipsum dolor sit amet consectetur adipisicing elit. Quod
@@ -72,64 +80,102 @@
         </div>
       </div>
     </div>
+    <div class="form-section">
+      <h2 class="subtitle">ZAMÓW SWOJĄ KSIĄŻKE</h2>
+      <div class="book-order">
+        <div class="form">
+          <form class="left-form" action="">
+            <label for="fname">Imie:</label><br>
+            <input type="text" id="fname" name="fname"><br><br>
+            <label for="lname">Nazwisko:</label><br>
+            <input type="text" id="lname" name="lname"><br><br>
+            <label for="email">Email:</label><br>
+            <input type="email" id="email" name="email"><br><br>
+            <label for="number-of-books">Ilość książek:</label><br>
+            <input type="number" min="0" id="number-of-books" name="number-of-books"><br><br>
+            <input class="submit-button" type="submit">
+          </form>
+          <form class="right-form" action="">
+            <label for="adress">Adres:</label><br>
+            <input type="adress" id="adress" name="adress"><br><br>
+            <label for="details">Inne szczegóły:</label><br>
+            <!-- <input type="text" id="details" name="details"> -->
+            <textarea name="message" id="details" rows="20" cols="30" placeholder="Wpisz swoją wiadomość tutaj..."></textarea>
+          </form>
+
+        </div>
+        <img src="images/Map.png" alt="Mapa">
+      </div>
+    </div>
+    <footer>
+      <h3 class="contact-title">Kontakt</h3>
+      <p class="contact-text">
+        Numer kontaktowy: 111 222 333 <br>
+        Adres Email: hobbit@gmail.com <br>
+        Siedziba: Zielona Góra ul. Bohaterów Westerplatte 25 <br>
+      </p>
+    </footer>
     <script>
+
+      if ("scrollRestoration" in history) {
+      history.scrollRestoration = "manual";
+    }
+
       const body = document.body;
       const entryButton = document.querySelector(".button");
       const backButton = document.getElementById("back-button");
       const targetSection = document.getElementById("book");
 
-      // **********************************************
-      // 1. ZABLOKUJ SCROLLOWANIE NA STARCIE
-      // **********************************************
-
-      // Zastosuj klasę blokującą od razu po załadowaniu skryptu
+    
       body.classList.add("no-scroll");
 
-      // **********************************************
-      // 2. FUNKCJA PRZEWIJANIA W DÓŁ (WEJDŹ DO ŚRÓDZIEMIA)
-      // **********************************************
 
+      window.addEventListener("load", () => {
+
+          window.scrollTo(0, 0);
+
+
+          document.body.classList.add("no-scroll");
+
+  
+  
+          if (backButton) backButton.classList.remove("visible");
+      });
+
+    
       function scrollToContent() {
         body.classList.remove("no-scroll");
 
-        // 2. Sprawia, że przycisk powrotu jest widoczny
+ 
         backButton.classList.add("visible");
 
-        // 3. Przewija do sekcji #book (z płynnym efektem)
         if (targetSection) {
           targetSection.scrollIntoView({ behavior: "smooth" });
         }
       }
 
-      // Nasłuchuj kliknięcia na główny button
       if (entryButton) {
         entryButton.addEventListener("click", function (e) {
-          e.preventDefault(); // Zapobiega domyślnemu zachowaniu linku (płynne przewijanie robimy w JS)
+          e.preventDefault(); 
           scrollToContent();
         });
       }
 
-      // **********************************************
-      // 3. FUNKCJA POWROTU NA STRONĘ STARTOWĄ (Przycisk Fixed)
-      // **********************************************
 
       function scrollToHero() {
-        // 1. Przewija do góry strony (czyli do sekcji .hero)
+       
         window.scrollTo({
           top: 0,
           behavior: "smooth",
         });
 
-        // 2. Ponownie blokuje scrollowanie
-        // Dodajemy lekkie opóźnienie, aby przewijanie miało czas się zakończyć
+    
         setTimeout(() => {
           body.classList.add("no-scroll");
-          // Ukrywa przycisk powrotu
           backButton.classList.remove("visible");
-        }, 800);
+        }, 300);
       }
 
-      // Nasłuchuj kliknięcia na przycisk powrotu
       if (backButton) {
         backButton.addEventListener("click", scrollToHero);
       }
