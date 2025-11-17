@@ -4,6 +4,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="style.css" />
+    <link rel="icon" type="image/x-icon" href="images/Ring.png">
     <title>Hobbit</title>
   </head>
 
@@ -93,14 +94,15 @@
             <input type="email" id="email" name="email"><br><br>
             <label for="number-of-books">Ilość książek:</label><br>
             <input type="number" min="0" id="number-of-books" name="number-of-books"><br><br>
-            <input class="submit-button" type="submit">
+            <input class="submit-button submit-button1" type="submit">
+            
           </form>
           <form class="right-form" action="">
             <label for="adress">Adres:</label><br>
-            <input type="adress" id="adress" name="adress"><br><br>
+            <input type="text" id="adress" name="adress"><br><br>
             <label for="details">Inne szczegóły:</label><br>
-            <!-- <input type="text" id="details" name="details"> -->
             <textarea name="message" id="details" rows="20" cols="30" placeholder="Wpisz swoją wiadomość tutaj..."></textarea>
+            <input class="submit-button submit-button2" type="submit">
           </form>
 
         </div>
@@ -116,7 +118,7 @@
       </p>
     </footer>
     <script>
-
+     
       if ("scrollRestoration" in history) {
       history.scrollRestoration = "manual";
     }
@@ -179,6 +181,40 @@
       if (backButton) {
         backButton.addEventListener("click", scrollToHero);
       }
+
+    
+  document.addEventListener("DOMContentLoaded", () => {
+  document.querySelectorAll('form').forEach(form => {
+    form.addEventListener('submit', handleSubmit);
+  });
+});
+
+function handleSubmit(e) {
+  e.preventDefault();
+
+  const errors = [];
+
+  const fname = document.getElementById('fname').value.trim();
+  const lname = document.getElementById('lname').value.trim();
+  const email = document.getElementById('email').value.trim();
+  const bookCount = Number(document.getElementById('number-of-books').value.trim());
+
+  if (!fname) errors.push('Podaj imię!');
+  if (!lname) errors.push('Podaj nazwisko!');
+  if (!email) errors.push('Podaj adres email!');
+  if (!bookCount || bookCount <= 0) errors.push('Wpisz poprawną liczbę książek!');
+  if(!document.getElementById('adress').value.trim()) errors.push('Podaj Adres!');
+
+  if (errors.length > 0) {
+    alert(errors.join('\n'));
+    return;
+  }
+
+  alert('Formularz został przeslany!');
+  e.target.reset();
+  document.querySelector('.right-form').reset(); 
+}
+
     </script>
   </body>
 </html>
