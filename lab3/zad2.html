@@ -1,11 +1,71 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Document</title>
-</head>
-<body>
-    
-</body>
+  </head>
+  <body>
+    <div>
+      <form action="przyjmowanie_danych">
+        <label for="minlength">Minimalna długość hasła:</label>
+        <input type="text" id="minlength" /><br />
+        <label for="maxlength">Maksymalna długość hasła:</label>
+        <input type="text" id="maxlength" /><br />
+        <label for="letters">Duże litery:</label>
+        <input type="checkbox" id="letters" value="tak" /><br />
+        <label for="special">Znaki specjalne:</label>
+        <input type="checkbox" id="special" value="tak" />
+      </form>
+      <button id="button">Wygeneruj hasło</button>
+    </div>
+    <script>
+      const MINLENGTH = document.getElementById("minlength");
+      const MAXLENGTH = document.getElementById("maxlength");
+      const LETTERS = document.getElementById("letters");
+      const SPECIAL = document.getElementById("special");
+      const BUTTON = document.getElementById("button");
+
+      const znakiSpecjalne = "!@#$%^&*()_+-=[]{}|;:<>,.?/~`";
+      const cyfry = "0123456789";
+      const maleLitery = "abcdefghijklmnopqrstuvwxyz";
+      const wielkieLitery = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+
+      function losujZakres(min, max) {
+        return Math.floor(Math.random() * (max - min + 1)) + min;
+      }
+
+      function generator() {
+        generatingSet = cyfry + maleLitery;
+        if (LETTERS.checked) {
+          generatingSet += wielkieLitery;
+        }
+        if (SPECIAL.checked) {
+          generatingSet += znakiSpecjalne;
+        }
+        const minDl = parseInt(MINLENGTH.value.trim());
+        const maxDl = parseInt(MAXLENGTH.value.trim());
+        if (isNaN(minDl) || isNaN(maxDl) || minDl < 1 || maxDl < minDl) {
+          alert(
+            "Błąd: Upewnij się, że minimalna i maksymalna długość są podane poprawnie i min ≤ max."
+          );
+          return null;
+        }
+        const dlugoscHasla = losujZakres(minDl, maxDl);
+        var index = 0;
+        var haslo = "";
+        for (i = 0; i < dlugoscHasla; i++) {
+          index = Math.floor(Math.random() * generatingSet.length);
+          haslo += generatingSet[index];
+        }
+        return haslo;
+      }
+      function generujAlert() {
+        const noweHaslo = generator();
+        alert("Wygenerowane hasło: " + noweHaslo);
+      }
+
+      BUTTON.addEventListener("click", generujAlert);
+    </script>
+  </body>
 </html>

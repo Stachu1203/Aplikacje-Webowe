@@ -1,11 +1,131 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Document</title>
-</head>
-<body>
-    
-</body>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <div>
+      <label for="search">Wyszukiwarka</label>
+      <input type="text" id="search-input" />
+      <button id="search-button">Szukaj</button>
+    </div>
+    <div>
+      <label>Sortowanie Ceny:</label><br />
+      <button id="sort-original" data-sort-type="original" style="padding: 8px">
+        Oryginalna kolejność
+      </button>
+      <button id="sort-asc" data-sort-type="price-asc" style="padding: 8px">
+        Cena rosnąco ↑
+      </button>
+      <button id="sort-desc" data-sort-type="price-desc" style="padding: 8px">
+        Cena malejąco ↓
+      </button>
+    </div>
+    <ul id="posts-list">
+      <li>Ładowanie danych...</li>
+    </ul>
+    <script>
+      const BASE_API_URL = "https://dummyjson.com/products";
+      let globalProducts = [];
+      let currentSortType = "original";
+
+      const filterInput = document.getElementById("filter-input");
+      const listElement = document.getElementById("posts-list");
+
+      const sortOriginalButton = document.getElementById("sort-original");
+      const sortAscButton = document.getElementById("sort-asc");
+      const sortDescButton = document.getElementById("sort-desc");
+
+      function sortProducts(products, sortType) {
+        let sortedProducts = [...products];
+
+        switch (sortType) {
+          case "price-asc":
+            sortedProducts.sort((a, b) => a.price - b.price);
+            break;
+          case "price-desc":
+            sortedProducts.sort((a, b) => b.price - a.price);
+            break;
+          case "original":
+          default:
+            return products;
+        }
+        return sortedProducts;
+      }
+
+      async function fetchAndDisplayProducts(searchTerm = "") {
+        const listElement = document.getElementById("posts-list");
+
+        let API_URL = BASE_API_URL;
+
+        if (searchTerm.trim() !== "") {
+          API_URL = `${BASE_API_URL}/search?q=${encodeURIComponent(
+            searchTerm
+          )}`;
+        }
+
+        try {
+          const response = await fetch(API_URL);
+
+          if (!response.ok) {
+            throw new Error(`Błąd HTTP! Status: ${response.status}`);
+          }
+
+          const data = await response.json();
+
+          const products = data.products;
+
+          listElement.innerHTML = "";
+
+          if (products.length === 0) {
+            listElement.innerHTML =
+              "<li>Nie znaleziono produktów spełniających kryteria wyszukiwania.</li>";
+            return;
+          }
+
+          const finalProducts = sortProducts(products, currentSortType);
+
+          products.forEach((product) => {
+            const listItem = document.createElement("li");
+
+            listItem.innerHTML = `
+                    <div class="product-item">
+                    <img src="${product.thumbnail}" alt="Zdjęcie produktu: ${product.title}">
+                    <h2>${product.title}</h2>
+                    <p>${product.description}...</p>
+                    </div>
+                    `;
+
+            listElement.appendChild(listItem);
+          });
+        } catch (error) {
+          listElement.innerHTML = `<li>Wystąpił błąd podczas pobierania danych: ${error.message}</li>`;
+          console.error("Błąd pobierania:", error);
+        }
+      }
+
+      document.addEventListener("DOMContentLoaded", () => {
+        const searchInput = document.getElementById("search-input");
+        const searchButton = document.getElementById("search-button");
+
+        const performSearch = () => {
+          const searchTerm = searchInput.value;
+          fetchAndDisplayProducts(searchTerm);
+        };
+
+        searchButton.addEventListener("click", performSearch);
+
+        searchInput.addEventListener("keydown", (event) => {
+          if (event.key === "Enter") {
+            performSearch();
+          }
+        });
+
+        fetchAndDisplayProducts();
+      });
+    </script>
+  </body>
 </html>
