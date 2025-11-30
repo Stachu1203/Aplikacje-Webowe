@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+</head>
+    <title>Document</title>
+</head>
+<body>
+    <div id="stoper">00:00</div>
+    <button id="start/stop">Start</button>
+    <button id="reset">Reset</button>
+    <script>
+        let sekundy = 0;
+        let interwal = null;
+        let status = "zatrzymany";
+
+        const stoper = document.getElementById("stoper");
+        const STARTSTOP = document.getElementById("start/stop");    
+        const RESET = document.getElementById("reset");
+
+        function formatujCzas(totalSeconds) {
+           
+            let m = Math.floor((totalSeconds % 3600) / 60);
+            let s = totalSeconds % 60;
+
+            m = m < 10 ? '0' + m : m;
+            s = s < 10 ? '0' + s : s;
+
+            return `${m}:${s}`;
+        }
+        function licznik() {
+            sekundy++;
+            stoper.innerHTML = formatujCzas(sekundy);  
+        }
+
+        function startStop(){
+            if(status == "zatrzymany"){
+                interwal = setInterval(licznik, 1000); 
+                STARTSTOP.innerHTML = 'Stop';
+                status = "dziala";
+            }
+            else{
+                clearInterval(interwal);
+                STARTSTOP.innerHTML = 'Start'; 
+                status = "zatrzymany";
+            }
+        }
+        function reset() {
+            clearInterval(interwal);
+            sekundy = 0; 
+            stoper.innerHTML = '00:00'; 
+            STARTSTOP.innerHTML = 'Start'; 
+            status = "zatrzymany";
+        }
+        STARTSTOP.addEventListener('click',startStop);
+        RESET.addEventListener('click', reset)
+
+    </script>
+</body>
+</html>
