@@ -305,8 +305,7 @@ window.onload =  function() {
 }
 
 function startPipeCycle() {
-    // 1. Definiuj stały, krótki interwał sprawdzania. 
-    // Losowość będzie kontrolowana przez licznik (patrz niżej).
+  
     const CHECK_INTERVAL = 100; 
     
     let timeSinceLastPipe = 0;
