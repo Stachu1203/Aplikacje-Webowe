@@ -1,0 +1,26 @@
+### Dodaj nową książkę
+POST http://127.0.0.1:5000/api/books
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoyLCJleHAiOjE3NjU0NDk3NzN9.XTIL8ihf8VCYYeqZV5Jkq7J01kC5WKxF3bDw2FpeI9M
+
+{
+    "title": "Harry Potter i Kamien Filozoficzny",
+    "author": "J.K. Rowling",
+    "year": 1997
+}
+
+### Pobierz wszystkie książki 
+GET http://127.0.0.1:5000/api/books
+
+### Usuń książkę 
+DELETE http://127.0.0.1:5000/api/books/1
+
+### Edytuj książkę 
+PUT http://127.0.0.1:5000/api/books/5
+Content-Type: application/json
+
+{
+    "title": "Wiedźmin: Krew Elfów (Edycja)",
+    "author": "Andrzej Sapkowski",
+    "year": 1994
+}

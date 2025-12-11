@@ -1,0 +1,28 @@
+### 1. Rejestracja 
+POST http://127.0.0.1:5002/api/register
+Content-Type: application/json
+
+{
+    "email": "jan@test.pl",
+    "password": "tajnehaslo123"
+}
+
+### 2. Logowanie 
+POST http://127.0.0.1:5002/api/login
+Content-Type: application/json
+
+{
+    "email": "jan@test.pl",
+    "password": "tajnehaslo123"
+}
+
+### 3. Dodanie książki 
+POST http://127.0.0.1:5000/api/books
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoyLCJleHAiOjE3NjU0NDk3NzN9.XTIL8ihf8VCYYeqZV5Jkq7J01kC5WKxF3bDw2FpeI9M
+
+{
+    "title": "Władca Pierścieni",
+    "author": "Tolkien",
+    "year": 1954
+}

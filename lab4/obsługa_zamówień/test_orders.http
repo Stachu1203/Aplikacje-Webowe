@@ -1,0 +1,35 @@
+### 1. Pobierz zamówienia dla użytkownika 1
+GET http://127.0.0.1:5001/api/orders/1
+
+### 2. Dodaj poprawne zamówienie 
+POST http://127.0.0.1:5001/api/orders
+Content-Type: application/json
+
+{
+    "userId": 1,
+    "bookId": 1,
+    "quantity": 5
+}
+
+### 3. Próba zamówienia NIEISTNIEJĄCEJ książki 
+
+POST http://127.0.0.1:5001/api/orders
+Content-Type: application/json
+
+{
+    "userId": 1,
+    "bookId": 999,
+    "quantity": 1
+}
+
+### 4. Zaktualizuj ilość w zamówieniu
+
+PATCH http://127.0.0.1:5001/api/orders/1
+Content-Type: application/json
+
+{
+    "quantity": 20
+}
+
+### 5. Usuń zamówienie
+DELETE http://127.0.0.1:5001/api/orders/1

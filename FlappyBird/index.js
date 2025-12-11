@@ -292,6 +292,7 @@ window.onload =  function() {
     }
     
     last5scores.push(score);
+    localStorage.setItem("lastScore",String(score));
 
     if (last5scores.length > 5) {
         last5scores.shift();
