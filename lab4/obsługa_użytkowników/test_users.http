@@ -19,7 +19,7 @@ Content-Type: application/json
 ### 3. Dodanie książki 
 POST http://127.0.0.1:5000/api/books
 Content-Type: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoyLCJleHAiOjE3NjU0NDk3NzN9.XTIL8ihf8VCYYeqZV5Jkq7J01kC5WKxF3bDw2FpeI9M
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoyLCJleHAiOjE3NjU4MjM3OTN9.IjORoYZrJ5YnKsg9ndoinCeSVAcTV0mplgZPwjCXAbA
 
 {
     "title": "Władca Pierścieni",

@@ -5,7 +5,7 @@ import jwt
 from functools import wraps
 
 app = Flask(__name__)
-
+app.config['SECRET_KEY'] = 'bardzo_tajny_klucz_123'
 
 BOOKS_SERVICE_URL = "http://127.0.0.1:5000/api/books"
 
