@@ -1,5 +1,7 @@
 import './App.css'
-import Logowanie from './formularze/Logowanie'
+import Aktualizacja from './inne/Aktualizacja'
+
+import Ternary from './inne/Ternary'
 
 
 
@@ -8,7 +10,7 @@ function App() {
   
 
   return (
-  <Logowanie></Logowanie>
+  <Aktualizacja></Aktualizacja>
   )
 }
 
