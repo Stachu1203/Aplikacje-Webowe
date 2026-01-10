@@ -1,16 +1,11 @@
 import './App.css'
-import Aktualizacja from './inne/Aktualizacja'
-
-import Ternary from './inne/Ternary'
-
-
-
+import Odliczanie from './efekty/Odliczanie'
 
 function App() {
   
 
   return (
-  <Aktualizacja></Aktualizacja>
+  <Odliczanie></Odliczanie>
   )
 }
 
